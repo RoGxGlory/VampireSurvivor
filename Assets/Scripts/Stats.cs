@@ -36,6 +36,8 @@ public class Stats : MonoBehaviour
 
     public bool hasShield = false; // Temporary shield status
 
+    private GameObject player;
+
     public void ApplyPowerUp(PowerUp.PowerUpType type, float duration)
     {
         switch (type)
@@ -60,6 +62,8 @@ public class Stats : MonoBehaviour
                 shieldCoroutine = StartCoroutine(ApplyShield(duration));
                 break;
         }
+
+        GameStateManager.Instance.UpdateStatText();
     }
 
     private IEnumerator ApplySpeedBoost(float duration)
@@ -91,8 +95,10 @@ public class Stats : MonoBehaviour
     private IEnumerator ApplyShield(float duration)
     {
         hasShield = true;
+        player.gameObject.GetComponent<SpriteRenderer>().color = new Color(1,0,0);
         yield return new WaitForSeconds(duration);
         hasShield = false;
+        player.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1);
     }
     #endregion
 
@@ -112,6 +118,7 @@ public class Stats : MonoBehaviour
     {
         currentHealth = maxHealth; // Initialize health
         gameManager = FindFirstObjectByType<GameStateManager>();
+        player = FindFirstObjectByType<Player>(FindObjectsInactive.Include).gameObject;
     }
 
     public void UpdateStats(List<string> statsToUp, List<int> values)
@@ -203,8 +210,8 @@ public class Stats : MonoBehaviour
         critStrikeModifier = playerStats.critStrikeModifier;
         cooldownModifier = playerStats.cooldownModifier;
 
-        Debug.LogError("Size is : " + playerStats.sizeModifier + "\nMana Gain is : " + playerStats.manaGainAmplify);
-        Debug.LogError("Health Regen is : " + playerStats.healthRegen);
+        Debug.Log("Size is : " + playerStats.sizeModifier + "\nMana Gain is : " + playerStats.manaGainAmplify);
+        Debug.Log("Health Regen is : " + playerStats.healthRegen);
     }
 
     public void LevelUp()
@@ -237,6 +244,7 @@ public class Stats : MonoBehaviour
         }
         else if (gameObject.CompareTag("Player"))
         {
+            if(hasShield == false)
             currentHealth -= damage; // Reduce health by damage value
             // Debug.Log($"{gameObject.name} took {damage} damage. Remaining health: {currentHealth}");
         }

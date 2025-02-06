@@ -110,6 +110,8 @@ public class GameStateManager : MonoBehaviour
 
     // Event for notifying subscribers of game state changes
     public event Action<GameState> OnGameStateChanged;
+
+    public bool bIsPlaying = false;
     #endregion
 
     private void Awake()
@@ -187,6 +189,7 @@ public class GameStateManager : MonoBehaviour
     // Home logic
     public void ShowHomeUI()
     {
+        bIsPlaying = false;
         homeUI.SetActive(true);
         inGameUI.SetActive(false);
         gameOverUI.SetActive(false);
@@ -236,11 +239,13 @@ public class GameStateManager : MonoBehaviour
         ShopManager.Instance.LoadPlayerData();
         playerStats.ResetStats(initialPlayerStats);
         UpdateStatText();
+        bIsPlaying = true;
     }
 
     public void GameOver()
     {
         CurrentState = GameState.GameOver;
+        bIsPlaying = false;
         enemyGenerator.StopCoroutine();
         Time.timeScale = 0f;
         Debug.Log("Game Over!");
@@ -275,7 +280,6 @@ public class GameStateManager : MonoBehaviour
         inGamePauseUI.SetActive(false);
         Player.SetActive(false);
         statsPanelUI.SetActive(false);
-        transformResetter.ResetPlayerPosition();
         ShopManager.Instance.UpdateCurrency();
     }
     public void PauseGame()
@@ -390,10 +394,10 @@ public class GameStateManager : MonoBehaviour
         {
             Destroy(Chest);
         }
-        GameObject[] SPMultipliers = GameObject.FindGameObjectsWithTag("Speed");
-        foreach (GameObject SPMultiplier in SPMultipliers)
+        GameObject[] PowerUps = GameObject.FindGameObjectsWithTag("PowerUp");
+        foreach (GameObject PowerUp in PowerUps)
         {
-            Destroy(SPMultiplier);
+            Destroy(PowerUp);
         }
         GameObject[] SCMultipliers = GameObject.FindGameObjectsWithTag("ScoreMultiplier");
         foreach (GameObject SCMultiplier in SCMultipliers)

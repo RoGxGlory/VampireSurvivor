@@ -62,12 +62,12 @@ public class CollisionHandler : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {
-            // Debug.Log("Player got hit by an enemy");
+            Debug.Log("Player got hit by an enemy");
             playerStats.TakeDamage(collision.gameObject.GetComponent<Enemy>().damage);
         }
         else
         {
-            // Debug.Log("Collided with a non-obstacle object.");
+            Debug.Log("Collided with a non-obstacle object.");
             // Collisions with other objects (non-obstacle) are handled naturally by Rigidbody physics
             HandleNonObstacleCollision(collision.gameObject);
         }
@@ -89,13 +89,6 @@ public class CollisionHandler : MonoBehaviour
             scoreManager.scoreMultiplier += 0.2f;
             Destroy(collider.gameObject);
             Debug.Log(scoreManager.scoreMultiplier);
-        }
-        if (collider.gameObject.CompareTag("Speed"))
-        {
-            Debug.Log("Player took a speed multiplier.");
-            //levelGenerator.UpdateSpeed();
-            Destroy(collider.gameObject);
-            //Debug.Log(levelGenerator.moveSpeedMultiplier);
         }
         if (collider.gameObject.CompareTag("Chest"))
         {

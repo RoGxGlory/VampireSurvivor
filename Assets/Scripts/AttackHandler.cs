@@ -89,29 +89,6 @@ public class AttackHandler : MonoBehaviour
 
     }
 
-    [ContextMenu("Convert to ScriptableObjects")]
-    void GenerateSO()
-    {
-        // Check if folder exists and create it if not
-        string folderPath = "Assets/ScriptableObjects/";
-
-        if (!AssetDatabase.IsValidFolder(folderPath))
-        {
-            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
-        }
-
-        foreach (Attack stat in myAttacksSO.myAttacks)
-        {
-            AttackSO attackSO = ScriptableObject.CreateInstance<AttackSO>();
-            attackSO.attack = stat;
-            AssetDatabase.CreateAsset(attackSO, folderPath + stat.name + ".asset");
-        }
-
-        AssetDatabase.SaveAssets();
-        AssetDatabase.Refresh();
-        
-    }
-
     private bool CanAttack(string attackName)
     {
         if (!attackCooldowns.ContainsKey(attackName)) return true;

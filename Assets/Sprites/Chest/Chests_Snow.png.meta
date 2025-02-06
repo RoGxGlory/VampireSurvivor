@@ -1235,7 +1235,51 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Chests_Snow_0: 3636562526721378698
+      Chests_Snow_1: -104199283300510650
+      Chests_Snow_10: -4482813610877136256
+      Chests_Snow_11: 698564970121448246
+      Chests_Snow_12: 2272906954111315395
+      Chests_Snow_13: -8444373310584202162
+      Chests_Snow_14: 5672853508253798862
+      Chests_Snow_15: -625358837685543214
+      Chests_Snow_16: -7412558544011276501
+      Chests_Snow_17: -4689204827313150992
+      Chests_Snow_18: 2723811753213752964
+      Chests_Snow_19: -2197849622608396262
+      Chests_Snow_2: 1850519812230898221
+      Chests_Snow_20: 333171303448945329
+      Chests_Snow_21: 9114941868712757454
+      Chests_Snow_22: -1149997312631328869
+      Chests_Snow_23: -2199489807454191704
+      Chests_Snow_24: -5476942812181084404
+      Chests_Snow_25: 174127441098272831
+      Chests_Snow_26: -277562045239654747
+      Chests_Snow_27: -8095227147364245322
+      Chests_Snow_28: -4049422559441149207
+      Chests_Snow_29: 8628789517998436308
+      Chests_Snow_3: -6093314881485787144
+      Chests_Snow_30: -2465863735702245729
+      Chests_Snow_31: 5429112306675227711
+      Chests_Snow_32: 1006848040577495843
+      Chests_Snow_33: 3495837290612478359
+      Chests_Snow_34: 449296730565946601
+      Chests_Snow_35: -1084585546784729227
+      Chests_Snow_36: 8160669797261647785
+      Chests_Snow_37: -7646846154790647835
+      Chests_Snow_38: -6853571843858949065
+      Chests_Snow_39: 7581774045806716028
+      Chests_Snow_4: 745688333910473000
+      Chests_Snow_40: -7977778926340285636
+      Chests_Snow_41: 5091029158488034920
+      Chests_Snow_42: 1295850035312062508
+      Chests_Snow_43: -4944067313962051118
+      Chests_Snow_5: 3152205020898722503
+      Chests_Snow_6: -5902911758448227768
+      Chests_Snow_7: -3487399855829267212
+      Chests_Snow_8: 5935465974106961315
+      Chests_Snow_9: -5252499866517500785
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

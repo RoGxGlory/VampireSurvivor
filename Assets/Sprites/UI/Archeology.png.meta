@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a1bc36f595a9be34f9999962d3546de2
+guid: 5e0245f47c7653a4486e43ec60c52ff2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1151905075149521417
-    second: Shop_0
+      213: -8734481224119117555
+    second: Archeology_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,19 +97,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -126,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shop_0
+      name: Archeology_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1024
-        height: 1024
+        width: 100
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7fd3ebcef6c9300f0800000000000000
-      internalID: -1151905075149521417
+      spriteID: d099f0b9a93e8c680800000000000000
+      internalID: -8734481224119117555
       vertices: []
       indices: 
       edges: []
@@ -161,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Shop_0: -1151905075149521417
+      Archeology_0: -8734481224119117555
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

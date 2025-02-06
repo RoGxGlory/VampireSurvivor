@@ -1,10 +1,13 @@
 fileFormatVersion: 2
-guid: a1bc36f595a9be34f9999962d3546de2
+guid: 950f930906b74dd409fbc8101ff63340
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1151905075149521417
-    second: Shop_0
+      213: -5383793579089033974
+    second: SpeedPowerUp_0
+  - first:
+      213: -1027188048231402930
+    second: SpeedPowerUp_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -97,19 +100,6 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -126,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shop_0
+      name: SpeedPowerUp_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1024
-        height: 1024
+        x: 33
+        y: 217
+        width: 9
+        height: 9
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +131,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7fd3ebcef6c9300f0800000000000000
-      internalID: -1151905075149521417
+      spriteID: a058e5ea34ce845b0800000000000000
+      internalID: -5383793579089033974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SpeedPowerUp_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 123
+        width: 452
+        height: 351
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e42f3a399e1beb1f0800000000000000
+      internalID: -1027188048231402930
       vertices: []
       indices: 
       edges: []
@@ -151,7 +163,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -161,7 +173,8 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Shop_0: -1151905075149521417
+      SpeedPowerUp_0: -5383793579089033974
+      SpeedPowerUp_1: -1027188048231402930
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

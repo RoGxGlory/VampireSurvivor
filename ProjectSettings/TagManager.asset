@@ -5,12 +5,12 @@ TagManager:
   serializedVersion: 3
   tags:
   - Obstacle
-  - Speed
   - Orb
   - Coin
   - ScoreMultiplier
   - Enemy
   - Chest
+  - PowerUp
   layers:
   - Default
   - TransparentFX

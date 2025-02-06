@@ -25,9 +25,12 @@ public class EnemyGenerator : MonoBehaviour
     // REF to the Game State Manager
     public GameStateManager stateManager;
 
+    private Transform playerTransform; // Reference to the player's transform
+
     void Start()
     {
         stateManager = FindFirstObjectByType<GameStateManager>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Get player reference
         StartCoroutine(SpawnEnemies());
     }
 
@@ -37,14 +40,10 @@ public class EnemyGenerator : MonoBehaviour
 
         while (true)
         {
-            // Clean up the list to ensure destroyed enemies are removed
             spawnedEnemies.RemoveAll(enemy => enemy == null);
-
-            // Debug.Log($"[Spawning Check] Boss Wave Active: {bIsBossWave}, Spawned Enemies: {spawnedEnemies.Count}, Max Allowed: {maxEnemies}");
 
             if (!bIsBossWave && spawnedEnemies.Count < maxEnemies)
             {
-                // Debug.Log("Spawning a normal enemy...");
                 SpawnEnemy(false);
             }
             else
@@ -62,7 +61,7 @@ public class EnemyGenerator : MonoBehaviour
         {
             if (isBossWave)
             {
-                SpawnBoss(1); // Spawn one boss enemy
+                SpawnBoss(1);
             }
             else
             {
@@ -79,11 +78,10 @@ public class EnemyGenerator : MonoBehaviour
 
             Vector2 spawnPosition;
             int attempts = 0;
-            const int maxAttempts = 100; // Prevent infinite loops in case of many enemies
+            const int maxAttempts = 100;
 
             do
             {
-                // Generate a random position within the spawn area
                 spawnPosition = new Vector2(
                     Random.Range(spawnArea.xMin, spawnArea.xMax),
                     Random.Range(spawnArea.yMin, spawnArea.yMax)
@@ -91,7 +89,12 @@ public class EnemyGenerator : MonoBehaviour
 
                 attempts++;
 
-                // Break if too many attempts have been made
+                // Ensure the spawn position is at least 10 units away from the player
+                if (playerTransform != null && Vector2.Distance(spawnPosition, playerTransform.position) < 10f)
+                {
+                    continue;
+                }
+
                 if (attempts >= maxAttempts)
                 {
                     Debug.LogWarning("Could not find a non-overlapping position for the enemy after many attempts.");
@@ -100,7 +103,6 @@ public class EnemyGenerator : MonoBehaviour
 
             } while (Physics2D.OverlapCircle(spawnPosition, enemyCollisionRadius, enemyLayerMask));
 
-            // Select an enemy based on spawn chance
             GameObject selectedEnemy = SelectEnemyBasedOnChance();
             if (selectedEnemy != null)
             {
@@ -110,8 +112,6 @@ public class EnemyGenerator : MonoBehaviour
                 {
                     enemyInstance.GetComponent<Stats>().bIsBossWaveEnemy = true;
                 }
-
-                // Ensure cleanup when the enemy is destroyed
                 enemyInstance.GetComponent<Enemy>()?.StartCoroutine(RemoveEnemyOnDestroy(enemyInstance));
             }
         }
@@ -137,17 +137,39 @@ public class EnemyGenerator : MonoBehaviour
             }
         }
 
-        return null; // Fallback in case no enemy is selected
+        return null;
     }
 
     private void SpawnBoss(int n)
     {
-        for (int i = 0; i < n; i++) // Spawns boss n times
+        for (int i = 0; i < n; i++)
         {
-            Vector2 spawnPosition = new Vector2(
-                Random.Range(spawnArea.xMin, spawnArea.xMax),
-                Random.Range(spawnArea.yMin, spawnArea.yMax)
-            );
+            Vector2 spawnPosition;
+            int attempts = 0;
+            const int maxAttempts = 100;
+
+            do
+            {
+                spawnPosition = new Vector2(
+                    Random.Range(spawnArea.xMin, spawnArea.xMax),
+                    Random.Range(spawnArea.yMin, spawnArea.yMax)
+                );
+
+                attempts++;
+
+                // Ensure the boss spawns at least 10 units away from the player
+                if (playerTransform != null && Vector2.Distance(spawnPosition, playerTransform.position) < 10f)
+                {
+                    continue;
+                }
+
+                if (attempts >= maxAttempts)
+                {
+                    Debug.LogWarning("Could not find a suitable boss spawn position after many attempts.");
+                    return;
+                }
+
+            } while (Physics2D.OverlapCircle(spawnPosition, enemyCollisionRadius, enemyLayerMask));
 
             GameObject bossInstance = Instantiate(bossPrefab, spawnPosition, Quaternion.identity);
             if (stateManager.bIsBossWave)
@@ -161,7 +183,7 @@ public class EnemyGenerator : MonoBehaviour
     public void SpawnBossWaveEnemies(int count)
     {
         bIsBossWave = true;
-        SpawnBoss(1); // Spawn the boss first
+        SpawnBoss(1);
         StartCoroutine(SpawnBossEnemies(count));
     }
 
@@ -171,17 +193,15 @@ public class EnemyGenerator : MonoBehaviour
 
         while (stateManager.bIsBossWave && stateManager.slider.value > 0)
         {
-            // Check if we can still spawn minions (not exceeding maxEnemies)
             if (GameObject.FindGameObjectsWithTag("Enemy").Length < maxEnemies)
             {
-                SpawnEnemy(false); // Spawn a normal enemy (minion)
+                SpawnEnemy(false);
                 spawnedCount++;
             }
 
-            yield return new WaitForSeconds(spawnInterval / 1.5f); // Faster spawn rate
+            yield return new WaitForSeconds(spawnInterval / 1.5f);
         }
 
-        // Ensure the wave officially ends when no enemies remain
         yield return new WaitUntil(() => GameObject.FindGameObjectsWithTag("Enemy").Length == 0);
         stateManager.EndBossWave();
     }
@@ -194,7 +214,6 @@ public class EnemyGenerator : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        // Visualize the spawn area in the Scene view
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(spawnArea.center, new Vector3(spawnArea.width, spawnArea.height, 0));
     }
@@ -207,12 +226,9 @@ public class EnemyGenerator : MonoBehaviour
     public void EnableStart()
     {
         Debug.Log("Resuming enemy spawning...");
-
-        StopAllCoroutines(); // Stop any existing coroutines to avoid conflicts
-
-        bIsBossWave = false; // Extra check that the boss is finished
-
-        StartCoroutine(SpawnEnemies()); // Restart the normal enemy spawning loop
+        StopAllCoroutines();
+        bIsBossWave = false;
+        StartCoroutine(SpawnEnemies());
     }
 
     public void StopCoroutine()

@@ -100,7 +100,7 @@ public class ShopManager : MonoBehaviour
     {
         selectedUpgrade = upgrade;
         upgradeIcon.sprite = upgrade.icon;
-        upgradeDescriptionText.text = upgrade.description + "\n\nPrice : " + upgrade.cost;
+        upgradeDescriptionText.text =upgrade.name + "\n\n" + upgrade.description + "\n\nPrice : " + upgrade.cost;
         SetUpgradeIconAlpha(1);
 
         buyButton.interactable = !upgrade.isPurchased && playerCurrency >= upgrade.cost;

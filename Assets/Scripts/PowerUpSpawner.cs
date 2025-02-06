@@ -27,18 +27,22 @@ public class PowerUpSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(spawnIntervalMin, spawnIntervalMax));
 
-            // Ensure we do not exceed the max power-ups allowed on the map
-            activePowerUps.RemoveAll(p => p == null);
-            if (activePowerUps.Count >= maxPowerUpsOnMap) continue;
+                yield return new WaitForSeconds(Random.Range(spawnIntervalMin, spawnIntervalMax));
 
-            // Spawn a random power-up around the player
-            Vector2 spawnPosition = GetRandomSpawnPositionAroundPlayer();
-            GameObject powerUpPrefab = powerUpPrefabs[Random.Range(0, powerUpPrefabs.Count)];
-            GameObject powerUpInstance = Instantiate(powerUpPrefab, spawnPosition, Quaternion.identity);
+                // Ensure we do not exceed the max power-ups allowed on the map
+                activePowerUps.RemoveAll(p => p == null);
+                if (activePowerUps.Count >= maxPowerUpsOnMap) continue;
 
-            activePowerUps.Add(powerUpInstance);
+                // Spawn a random power-up around the player
+                Vector2 spawnPosition = GetRandomSpawnPositionAroundPlayer();
+                GameObject powerUpPrefab = powerUpPrefabs[Random.Range(0, powerUpPrefabs.Count)];
+
+            if (GameStateManager.Instance.bIsPlaying)
+            {
+                GameObject powerUpInstance = Instantiate(powerUpPrefab, spawnPosition, Quaternion.identity);
+                activePowerUps.Add(powerUpInstance);
+            }
         }
     }
 
