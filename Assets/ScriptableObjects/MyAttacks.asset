@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MyAttacks
+  m_EditorClassIdentifier: Assembly-CSharp::AttackHandler/MyAttacksSO
+  myAttacks:
+  - name: Lava Zone
+    isEnabled: 1
+    allowWithoutTarget: 1
+    attackCooldown: 1.8
+    damage: 13
+    areaOfEffect: 1
+    baseDuration: 5
+    attackLevel: 3
+    range: 0
+    chainCount: 0
+    attackCount: 1
+    size: 1.1
+    attackPrefab: {fileID: 7986216379624690867, guid: 53fe2bfd320e3e64fb7c58ecf2196c71, type: 3}
+  - name: Lightning Attack
+    isEnabled: 1
+    allowWithoutTarget: 0
+    attackCooldown: 1
+    damage: 35
+    areaOfEffect: 0
+    baseDuration: 2
+    attackLevel: 4
+    range: 7
+    chainCount: 5
+    attackCount: 1
+    size: 1
+    attackPrefab: {fileID: 2974790878524722234, guid: 650b4319733a82845a7132189c2af0fd, type: 3}
+  - name: Magic Arrow
+    isEnabled: 0
+    allowWithoutTarget: 0
+    attackCooldown: 0.8
+    damage: 10
+    areaOfEffect: 0
+    baseDuration: 0
+    attackLevel: 1
+    range: 0
+    chainCount: 0
+    attackCount: 1
+    size: 1
+    attackPrefab: {fileID: 7986216379624690867, guid: 353bbcf5d774d084fb8d9b5bc285a55a, type: 3}
+  - name: Withering Spirit
+    isEnabled: 1
+    allowWithoutTarget: 0
+    attackCooldown: 1
+    damage: 20
+    areaOfEffect: 0
+    baseDuration: 0
+    attackLevel: 1
+    range: 0
+    chainCount: 0
+    attackCount: 1
+    size: 1
+    attackPrefab: {fileID: 7986216379624690867, guid: 0db0c003856233c48a953978e3d6f10f, type: 3}

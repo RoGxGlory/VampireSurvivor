@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4796b28386f174abc584d035989a6f, type: 3}
+  m_Name: Lava Zone
+  m_EditorClassIdentifier: Assembly-CSharp::AttackHandler/AttackSO
+  attack:
+    name: Lava Zone
+    isEnabled: 0
+    allowWithoutTarget: 1
+    attackCooldown: 2
+    damage: 13
+    areaOfEffect: 1
+    baseDuration: 5
+    attackLevel: 1
+    range: 0
+    chainCount: 0
+    attackCount: 1
+    size: 1
+    attackPrefab: {fileID: 7986216379624690867, guid: 53fe2bfd320e3e64fb7c58ecf2196c71, type: 3}

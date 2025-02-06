@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e4796b28386f174abc584d035989a6f, type: 3}
+  m_Name: Withering Spirit
+  m_EditorClassIdentifier: Assembly-CSharp::AttackHandler/AttackSO
+  attack:
+    name: Withering Spirit
+    isEnabled: 1
+    allowWithoutTarget: 0
+    attackCooldown: 1
+    damage: 20
+    areaOfEffect: 0
+    baseDuration: 0
+    attackLevel: 1
+    range: 0
+    chainCount: 0
+    attackCount: 1
+    size: 1
+    attackPrefab: {fileID: 7986216379624690867, guid: 0db0c003856233c48a953978e3d6f10f, type: 3}

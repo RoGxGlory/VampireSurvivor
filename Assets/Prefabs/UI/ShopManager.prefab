@@ -1,0 +1,220 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1474106749052479506
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7585734982285144912}
+  - component: {fileID: 4591376186302083148}
+  m_Layer: 0
+  m_Name: ShopManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7585734982285144912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474106749052479506}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1790.0997, y: 937.52344, z: 9.946492}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4591376186302083148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474106749052479506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1098384f04db3c147939962f1a43326b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableUpgrades:
+  - name: Intelligence I
+    icon: {fileID: 0}
+    description: ATK Increase by 5%
+    cost: 0
+    isPurchased: 0
+  - name: Intelligence II
+    icon: {fileID: 0}
+    description: ATK Increase by 7.5%
+    cost: 0
+    isPurchased: 0
+  - name: Intelligence III
+    icon: {fileID: 0}
+    description: ATK Increase by 10%
+    cost: 0
+    isPurchased: 0
+  - name: Vitality I
+    icon: {fileID: 0}
+    description: Max HP Increase by 20%
+    cost: 0
+    isPurchased: 0
+  - name: Vitality II
+    icon: {fileID: 0}
+    description: Max HP Increase by 25%
+    cost: 0
+    isPurchased: 0
+  - name: Vitality III
+    icon: {fileID: 0}
+    description: Max HP Increase by 30%
+    cost: 0
+    isPurchased: 0
+  - name: Fast Casting I
+    icon: {fileID: 0}
+    description: Decrease Magic Cooldown by 2%
+    cost: 0
+    isPurchased: 0
+  - name: Fast Casting II
+    icon: {fileID: 0}
+    description: Decrease Magic Cooldown by 3%
+    cost: 0
+    isPurchased: 0
+  - name: Fast Casting III
+    icon: {fileID: 0}
+    description: Decrease Magic Cooldown by 4%
+    cost: 0
+    isPurchased: 0
+  - name: Regeneration I
+    icon: {fileID: 0}
+    description: Increase HP Regen per sec by 0.05%
+    cost: 0
+    isPurchased: 0
+  - name: Regeneration II
+    icon: {fileID: 0}
+    description: Increase HP Regen per sec by 0.075%
+    cost: 0
+    isPurchased: 0
+  - name: Regeneration III
+    icon: {fileID: 0}
+    description: Increase HP Regen per sec by 0.1%
+    cost: 0
+    isPurchased: 0
+  - name: Growth I
+    icon: {fileID: 0}
+    description: Every 10 levels, increase ATK and Max HP by 1%
+    cost: 0
+    isPurchased: 0
+  - name: Growth II
+    icon: {fileID: 0}
+    description: Every 10 levels, increase ATK and Max HP by 2%
+    cost: 0
+    isPurchased: 0
+  - name: Agility I
+    icon: {fileID: 0}
+    description: Increase Evasion by 5%
+    cost: 0
+    isPurchased: 0
+  - name: Agility II
+    icon: {fileID: 0}
+    description: Increase Evasion by 7.5%
+    cost: 0
+    isPurchased: 0
+  - name: Agility III
+    icon: {fileID: 0}
+    description: Increase Evasion by 10%
+    cost: 0
+    isPurchased: 0
+  - name: Haste I
+    icon: {fileID: 0}
+    description: Increase Movement Speed by 5%
+    cost: 0
+    isPurchased: 0
+  - name: Haste II
+    icon: {fileID: 0}
+    description: Increase Movement Speed by 7.5%
+    cost: 0
+    isPurchased: 0
+  - name: Haste III
+    icon: {fileID: 0}
+    description: Increase Movement Speed by 10%
+    cost: 0
+    isPurchased: 0
+  - name: Concentration I
+    icon: {fileID: 0}
+    description: Increase All Magic Duration by 5%
+    cost: 0
+    isPurchased: 0
+  - name: Concentration II
+    icon: {fileID: 0}
+    description: Increase All Magic Duration by 7.5%
+    cost: 0
+    isPurchased: 0
+  - name: Concentration III
+    icon: {fileID: 0}
+    description: Increase All Magic Duration by 10%
+    cost: 0
+    isPurchased: 0
+  - name: Arcane Effuse I
+    icon: {fileID: 0}
+    description: Increase All Magic Size by 3%
+    cost: 0
+    isPurchased: 0
+  - name: Arcane Effuse II
+    icon: {fileID: 0}
+    description: Increase All Magic Size by 4%
+    cost: 0
+    isPurchased: 0
+  - name: Arcane Effuse III
+    icon: {fileID: 0}
+    description: Increase All Magic Size by 5%
+    cost: 0
+    isPurchased: 0
+  - name: Loot I
+    icon: {fileID: 0}
+    description: Treasure Chests are created 7.5% more frequently
+    cost: 0
+    isPurchased: 0
+  - name: Loot II
+    icon: {fileID: 0}
+    description: Treasure Chests are created 12.5% more frequently
+    cost: 0
+    isPurchased: 0
+  upgradeButtons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  buyButton: {fileID: 0}
+  upgradeIcon: {fileID: 0}
+  upgradeDescriptionText: {fileID: 0}
+  currencyText: {fileID: 0}
