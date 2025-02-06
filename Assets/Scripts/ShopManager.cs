@@ -51,7 +51,7 @@ public class ShopManager : MonoBehaviour
 
     void Start()
     {
-        playerStats = FindFirstObjectByType<Stats>();
+        playerStats = FindFirstObjectByType<Player>(FindObjectsInactive.Include).GetComponent<Stats>();
         UpdateCurrencyUI();
         AssignUpgradeButtons();
         buyButton.interactable = false;

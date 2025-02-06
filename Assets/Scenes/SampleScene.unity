@@ -2566,6 +2566,17 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
+--- !u!114 &545915264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7529627914889355168, guid: aafc3a98c709763408a8159b889bed2a, type: 3}
+  m_PrefabInstance: {fileID: 38158255}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da0c512f12947e489f739169773d7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &608293447 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4829404112629473647, guid: 242e93628c30086468c9ec0cec86e506, type: 3}
@@ -3971,6 +3982,10 @@ PrefabInstance:
       value: ChestSpawner
       objectReference: {fileID: 0}
     - target: {fileID: 6644198127757694575, guid: 5eeb1bd2aa278184ea58e77c38a23930, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1408553845}
+    - target: {fileID: 6644198127757694575, guid: 5eeb1bd2aa278184ea58e77c38a23930, type: 3}
       propertyPath: spawnInterval
       value: 150
       objectReference: {fileID: 0}
@@ -3991,6 +4006,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5498734299417830806, guid: 0766a53a2bad56b4586f18181858dc34, type: 3}
+      propertyPath: inputField
+      value: 
+      objectReference: {fileID: 545915264}
     - target: {fileID: 5498734299417830806, guid: 0766a53a2bad56b4586f18181858dc34, type: 3}
       propertyPath: gameOverCanvas
       value: 

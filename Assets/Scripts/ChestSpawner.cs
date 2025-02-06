@@ -15,7 +15,7 @@ public class ChestSpawner : MonoBehaviour
     void Start()
     {
         StartCoroutine(ChestSpawnTimer());
-        player = FindFirstObjectByType<Player>();
+        player = FindFirstObjectByType<Player>(FindObjectsInactive.Include);
     }
 
     private void Update()

@@ -15,7 +15,7 @@ public class PowerUpSpawner : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform; // Make sure your player has the "Player" tag
+        player = FindFirstObjectByType<Player>(FindObjectsInactive.Include).gameObject.transform; // Make sure your player has the "Player" tag
         if (player == null)
         {
             Debug.LogError("Player not found! Please assign the Player tag.");

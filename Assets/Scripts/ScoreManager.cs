@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; } // Singleton instance
 
-    TMP_InputField inputField;
+    public TMP_InputField inputField;
     public TMP_Text leaderboardText;
 
     public GameObject gameOverCanvas;
@@ -38,9 +38,10 @@ public class ScoreManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
 
-        inputField = gameOverCanvas.transform.Find("NameInputField").GetComponent<TMP_InputField>();
-
+    private void Start()
+    {
         LoadScores();
         LoadCurrency();
         UpdateLeaderboardUI(); // Update UI with leaderboard

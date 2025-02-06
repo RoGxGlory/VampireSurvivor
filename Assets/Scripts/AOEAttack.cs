@@ -26,6 +26,7 @@ public class AOEAttack : MonoBehaviour
             if (hit.gameObject != gameObject && hit.CompareTag("Enemy"))
             {
                 // Apply damage to the enemy
+                // Apply damage to the enemy
                 var enemyStats = hit.GetComponent<Stats>();
                 if (enemyStats != null)
                 {
