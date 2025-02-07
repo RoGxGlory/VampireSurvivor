@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         chestSpawner = FindFirstObjectByType<ChestSpawner>();
 
         // Find the player GameObject in the scene
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = FindFirstObjectByType<Player>(FindObjectsInactive.Include).gameObject;
         if (player != null)
         {
             playerTransform = player.transform;

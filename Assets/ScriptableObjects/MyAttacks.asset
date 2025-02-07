@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 0243584b5f96ba64bb0aa69a3f36a035, type: 3}
   m_Name: MyAttacks
-  m_EditorClassIdentifier: Assembly-CSharp::AttackHandler/MyAttacksSO
+  m_EditorClassIdentifier: 
   myAttacks:
   - name: Lava Zone
     isEnabled: 1

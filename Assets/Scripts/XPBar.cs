@@ -12,7 +12,7 @@ public class XPBar : MonoBehaviour
     void Start()
     {
         // Find the player's Stats component
-        playerStats = FindFirstObjectByType<Player>().GetComponent<Stats>();
+        playerStats = FindFirstObjectByType<Player>(FindObjectsInactive.Include).GetComponent<Stats>();
         if (playerStats == null)
         {
             Debug.LogError("Stats component not found on the player.");

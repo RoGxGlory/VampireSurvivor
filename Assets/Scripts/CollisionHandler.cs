@@ -36,7 +36,7 @@ public class CollisionHandler : MonoBehaviour
         {
             Debug.LogError("GameManager not found !");
         }
-        playerStats = GetComponent<Stats>();
+        playerStats = FindFirstObjectByType<Player>(FindObjectsInactive.Include).GetComponent<Stats>();
         if (playerStats == null)
         {
             Debug.LogError("PlayerStats not found !");

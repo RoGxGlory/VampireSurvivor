@@ -21,7 +21,8 @@ public class UpgradeData
     }
 
     public void ResetList()
-    { purchasedUpgrades.Clear();
+    { 
+        purchasedUpgrades.Clear();
 
         foreach (var upgrade in playerUpgrades)
         {

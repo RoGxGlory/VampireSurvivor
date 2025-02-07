@@ -30,7 +30,7 @@ public class EnemyGenerator : MonoBehaviour
     void Start()
     {
         stateManager = FindFirstObjectByType<GameStateManager>();
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform; // Get player reference
+        playerTransform = FindFirstObjectByType<Player>(FindObjectsInactive.Include).transform; // Get player reference
         StartCoroutine(SpawnEnemies());
     }
 

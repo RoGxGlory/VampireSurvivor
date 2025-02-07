@@ -14,6 +14,8 @@ public class TilingBackground : MonoBehaviour
 
     void Start()
     {
+        player = FindFirstObjectByType<Player>(FindObjectsInactive.Include).gameObject.transform;
+
         if (player == null)
         {
             Debug.LogError("Player transform is not assigned!");

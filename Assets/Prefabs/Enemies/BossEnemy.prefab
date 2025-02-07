@@ -65,7 +65,9 @@ MonoBehaviour:
   critRate: 5
   critStrikeModifier: 100
   cooldownModifier: 0
+  hasShield: 0
   bIsBossWaveEnemy: 0
+  gameManager: {fileID: 0}
   levelUpUI: {fileID: 0}
 --- !u!212 &8187843910535697507
 SpriteRenderer:
@@ -140,6 +142,7 @@ MonoBehaviour:
   bIsLargeEnemy: 0
   bIsBossEnemy: 1
   deathEffectPrefab: {fileID: 888444077320411739, guid: 0c2509361b13505428ce788b7f846686, type: 3}
+  chestSpawner: {fileID: 0}
   gameManager: {fileID: 0}
   orbs:
   - orbPrefab: {fileID: 1174348571714874180, guid: fb05d694df604f4429e50b8348a87fd5, type: 3}
@@ -303,6 +306,7 @@ MonoBehaviour:
   healthBarImage: {fileID: 6741927264093687503}
   healthBarBG: {fileID: 6826000596150944592}
   healthBarCanvas: {fileID: 8401647115766606130}
+  player: {fileID: 4470887061590505429, guid: 8813ac04b2a18c84b920b4e66e3528cc, type: 3}
   isOnEnemy: 1
 --- !u!1 &1661320102410594454
 GameObject:

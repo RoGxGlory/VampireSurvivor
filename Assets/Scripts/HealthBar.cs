@@ -8,6 +8,8 @@ public class HealthBar : MonoBehaviour
     public GameObject healthBarBG; // Reference to the background of the health bar
     public Canvas healthBarCanvas; // Reference to the canvas
 
+    public GameObject player;
+
     private Transform Transform; // Reference to the entity's transform
     private Transform healthBarSocket; // Reference to the health bar socket
 
@@ -15,12 +17,14 @@ public class HealthBar : MonoBehaviour
 
     private void Start()
     {
+        player = FindFirstObjectByType<Player>(FindObjectsInactive.Include).gameObject;
+        Stats = player.GetComponent<Stats>();
         if (isOnEnemy == false)
         {
             // Find the player and set references
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null)
             {
+                player = FindFirstObjectByType<Player>(FindObjectsInactive.Include).gameObject;
                 Transform = player.transform;
                 Stats = player.GetComponent<Stats>();
                 healthBarSocket = player.transform.Find("HealthBarSocket");
@@ -37,25 +41,29 @@ public class HealthBar : MonoBehaviour
         }
         else
         {
-            // Find the player and set references
+            // Find the enemy and set references
             GameObject enemy = gameObject.transform.parent.parent.gameObject;
             if (enemy != null)
             {
                 Transform = enemy.transform;
                 Stats = enemy.GetComponent<Stats>();
-                healthBarSocket = enemy.transform.Find("HealthBarSocket");
+                healthBarSocket = enemy.transform.GetChild(0).GetChild(0);
+                if (healthBarSocket != null)
+                {
+                    Debug.Log(healthBarSocket.gameObject.name);
+                }
                 healthBarBG.transform.position = Transform.position;
                 healthBarImage.transform.position = Transform.position;
                 healthBarCanvas.worldCamera = Camera.main;
 
                 if (Stats == null)
                 {
-                    Debug.LogError("EnemyStats component not found on the player object.");
+                    Debug.LogError("EnemyStats component not found on the game object.");
                 }
             }
             else
             {
-                Debug.LogError("Player object not found in the scene! Make sure it has the 'Player' tag.");
+                Debug.LogError("Enemy object not found in the scene!");
             }
         }
 

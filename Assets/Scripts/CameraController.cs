@@ -8,6 +8,11 @@ public class CameraController : MonoBehaviour
 
     private bool isFollowing = false; // Whether the camera should follow the player
 
+    private void Start()
+    {
+        playerTransform = FindFirstObjectByType<Player>(FindObjectsInactive.Include).gameObject.transform;
+    }
+
     private void OnEnable()
     {
         GameStateManager.Instance.OnGameStateChanged += HandleGameStateChanged;

@@ -33,7 +33,7 @@ public class LevelUpUI : MonoBehaviour
     public GameObject[] upgradeIcons; // Icon components for the buttons
 
     private AttackHandler attackHandler; // Reference to the player's AttackHandler
-    public AttackHandler.MyAttacksSO playerAttacks;// List of the player's attacks
+    public MyAttacksSO playerAttacks;// List of the player's attacks
 
     private HashSet<string> unlockedThisRun = new HashSet<string>(); // Track unlocked attacks in current run
 
@@ -43,19 +43,22 @@ public class LevelUpUI : MonoBehaviour
     void Start()
     {
         stateManager = FindFirstObjectByType<GameStateManager>();
-        attackHandler = FindFirstObjectByType<Player>(FindObjectsInactive.Include).GetComponent<AttackHandler>();
-        if (attackHandler == null)
-        {
-            Debug.LogError("AttackHandler not found in the scene.");
-        }
+        attackHandler = FindFirstObjectByType<Player>(FindObjectsInactive.Include)?.GetComponent<AttackHandler>();
 
-        HideLevelUpUI(); // Hide the UI initially
+        if (attackHandler == null)
+            Debug.LogError("AttackHandler not found in the scene.");
+
+        if (playerAttacks == null)
+            Debug.LogError("MyAttacksSO is not assigned in the inspector.");
+
+        HideLevelUpUI();
     }
 
     public void ShowLevelUpUI()
     {
         Debug.Log("UI Shown");
         levelUpPanel.SetActive(true);
+
         // Randomly select 3 choices from the filtered upgrade choices
         randomChoices = GetFilteredRandomChoices(3);
 
@@ -72,15 +75,21 @@ public class LevelUpUI : MonoBehaviour
             {
                 UpgradeChoice choice = randomChoices[i];
 
-                // Update button text and functionality
-                upgradeNameTexts[i].text = choice.name;
-                buttonTexts[i].text = choice.description;
-                upgradeIcons[i].GetComponent<Image>().sprite = choice.icon;
+                if (choiceButtons[i] != null)
+                {
+                    upgradeNameTexts[i].text = choice.name ?? "Unknown Upgrade";
+                    buttonTexts[i].text = choice.description ?? "No Description";
+                    upgradeIcons[i].GetComponent<Image>().sprite = choice.icon;
 
-                choiceButtons[i].onClick.RemoveAllListeners();
-                choiceButtons[i].onClick.AddListener(() => ApplyUpgrade(choice));
+                    choiceButtons[i].onClick.RemoveAllListeners();
+                    choiceButtons[i].onClick.AddListener(() => ApplyUpgrade(choice));
 
-                choiceButtons[i].gameObject.SetActive(true);
+                    choiceButtons[i].gameObject.SetActive(true);
+                }
+                else
+                {
+                    Debug.LogWarning($"Choice button at index {i} is not assigned.");
+                }
             }
             else
             {
@@ -109,16 +118,22 @@ public class LevelUpUI : MonoBehaviour
         // Filter out upgrades for attacks that are not enabled unless they are unlockable
         foreach (var choice in upgradeChoices)
         {
-            var matchingAttack = playerAttacks.myAttacks.Find(a => a.name == choice.associatedAttack?.name);
+            if (choice.associatedAttack == null)
+            {
+                Debug.LogWarning($"Upgrade choice '{choice.name}' has no associated attack.");
+                continue;
+            }
+
+            var matchingAttack = playerAttacks.myAttacks.Find(a => a.name == choice.associatedAttack.name);
             if (matchingAttack != null && (matchingAttack.isEnabled || (choice.isUnlockable && !unlockedThisRun.Contains(choice.associatedAttack.name))))
             {
                 validChoices.Add(choice);
             }
         }
 
-        validChoices.RemoveAll(choice => choice.isUnlockable && unlockedThisRun.Contains(choice.associatedAttack.name)); // Ensure unlockables don't appear after being taken
-
+        validChoices.RemoveAll(choice => choice.isUnlockable && unlockedThisRun.Contains(choice.associatedAttack?.name));
         validChoices.Shuffle(); // Shuffle the list randomly
+
         return validChoices.GetRange(0, Mathf.Min(count, validChoices.Count));
     }
 
@@ -150,17 +165,20 @@ public class LevelUpUI : MonoBehaviour
                     choice.sizeModifier
                 );
             }
+            else
+            {
+                Debug.LogWarning($"No matching attack found for upgrade: {choice.name}");
+            }
         }
 
         Debug.Log("Applied upgrade: " + choice.name);
-
         Time.timeScale = 1.0f;
         HideLevelUpUI();
     }
 
     public void ResetUnlockedAttacks()
     {
-        unlockedThisRun.Clear(); // Reset when starting a new run
+        unlockedThisRun.Clear();
+        // Reset when starting a new run
     }
 }
-

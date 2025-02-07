@@ -127,6 +127,7 @@ public class GameStateManager : MonoBehaviour
 
     void Start()
     {
+        Player = FindFirstObjectByType<Player>(FindObjectsInactive.Include).gameObject;
         ShowHomeUI();
         playerStats = Player.GetComponent<Stats>();
         attackHandler = Player.GetComponent<AttackHandler>();
@@ -149,7 +150,7 @@ public class GameStateManager : MonoBehaviour
             }
         }
 
-        if (CurrentState == GameState.InGame)
+        if (CurrentState == GameState.InGame && bIsPlaying)
         {
             // Update the timer
             timer += Time.deltaTime;
@@ -206,7 +207,10 @@ public class GameStateManager : MonoBehaviour
         transformResetter.ResetPlayerPosition();
         Player.SetActive(true);
         player.bIsPlaying = true;
-        attackHandler.ResetAttacks();
+        if (attackHandler != null)
+            attackHandler.ResetAttacks();
+        else
+            Debug.LogError("Attack Handler not found");
         chestUI.ResetArtifacts();
 
 
@@ -230,6 +234,7 @@ public class GameStateManager : MonoBehaviour
         ScoreManager.Instance.ResetScore();
         UpdateCurrentScore(0);
         levelUpUI.ResetUnlockedAttacks();
+        slider.gameObject.SetActive(false); // Hides progress bar
 
         // Game logic
         scoreManager.bIsScoreSubmitted = false;
@@ -408,6 +413,7 @@ public class GameStateManager : MonoBehaviour
 
     void UpdateTimer()
     {
+        Debug.Log("Time Updated");
         timePlayed++;
         seconds++;
         if (seconds == 10)

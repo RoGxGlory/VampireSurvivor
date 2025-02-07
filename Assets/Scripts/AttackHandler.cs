@@ -25,12 +25,6 @@ public class AttackHandler : MonoBehaviour
         public GameObject attackPrefab; // Prefab for visual or physical representation of the attack
     }
 
-    [CreateAssetMenu(fileName = "MyAttacks")]
-    public class MyAttacksSO : ScriptableObject
-    {
-        public List<Attack> myAttacks;
-    }
-
     private Stats playerStats;
 
     public List<Attack> attacks = new List<Attack>(); // List of attacks available to the entity
@@ -47,34 +41,56 @@ public class AttackHandler : MonoBehaviour
 
     private void Start()
     {
-        playerStats = FindFirstObjectByType<Player>().GetComponent<Stats>();
+        playerStats = FindFirstObjectByType<Player>(FindObjectsInactive.Include)?.GetComponent<Stats>();
+        if (playerStats == null) Debug.LogError("playerStats is NULL");
+
         stateManager = FindFirstObjectByType<GameStateManager>();
+        if (stateManager == null) Debug.LogError("stateManager is NULL");
 
         foreach (AttackSO attackSO in attackSOs)
         {
-            var CopiedAttack = new Attack
-            {
-                name = attackSO.attack.name,
-                isEnabled = attackSO.attack.isEnabled,
-                allowWithoutTarget = attackSO.attack.allowWithoutTarget,
-                attackCooldown = attackSO.attack.attackCooldown,
-                damage = attackSO.attack.damage,
-                areaOfEffect = attackSO.attack.areaOfEffect,
-                baseDuration = attackSO.attack.baseDuration,
-                attackLevel = attackSO.attack.attackLevel,
-                attackPrefab = attackSO.attack.attackPrefab,
-                range = attackSO.attack.range,
-                chainCount = attackSO.attack.chainCount,
-                size = attackSO.attack.size,
-
-            };
-            myAttacksSO.myAttacks.Add(CopiedAttack);
+            if (attackSO == null)
+                Debug.LogError("AttackSO is NULL");
+            if (attackSO.attack == null)
+                Debug.LogError("Attack in AttackSO is NULL");
         }
+
+        if (stateManager != null && playerStats != null)
+        {
+            foreach (AttackSO attackSO in attackSOs)
+            {
+                var CopiedAttack = new Attack
+                {
+                    name = attackSO.attack.name,
+                    isEnabled = attackSO.attack.isEnabled,
+                    allowWithoutTarget = attackSO.attack.allowWithoutTarget,
+                    attackCooldown = attackSO.attack.attackCooldown,
+                    damage = attackSO.attack.damage,
+                    areaOfEffect = attackSO.attack.areaOfEffect,
+                    baseDuration = attackSO.attack.baseDuration,
+                    attackLevel = attackSO.attack.attackLevel,
+                    attackPrefab = attackSO.attack.attackPrefab,
+                    range = attackSO.attack.range,
+                    chainCount = attackSO.attack.chainCount,
+                    size = attackSO.attack.size,
+
+                };
+                if (myAttacksSO != null)
+                    myAttacksSO.myAttacks.Add(CopiedAttack);
+                else
+                    Debug.LogError("AttacksSO not found !");
+            }
+        }
+        else
+        {
+            playerStats = FindFirstObjectByType<Player>(FindObjectsInactive.Include).GetComponent<Stats>();
+            stateManager = FindFirstObjectByType<GameStateManager>();
+        }        
     }
 
     void Update()
     {
-        if (stateManager.CurrentState == GameState.InGame)
+        if (stateManager.CurrentState == GameState.InGame && stateManager.bIsPlaying)
         {
             // Handle all attacks that are enabled
             foreach (var attack in myAttacksSO.myAttacks)
@@ -245,27 +261,35 @@ public class AttackHandler : MonoBehaviour
 
     public void ResetAttacks()
     {
-        myAttacksSO.myAttacks.Clear();
-        foreach (AttackSO attackSO in attackSOs)
+        if(myAttacksSO.myAttacks != null)
         {
-            var CopiedAttack = new Attack
+            myAttacksSO.myAttacks.Clear();
+            foreach (AttackSO attackSO in attackSOs)
             {
-                name = attackSO.attack.name,
-                isEnabled = attackSO.attack.isEnabled,
-                allowWithoutTarget = attackSO.attack.allowWithoutTarget,
-                attackCooldown = attackSO.attack.attackCooldown,
-                damage = attackSO.attack.damage,
-                areaOfEffect = attackSO.attack.areaOfEffect,
-                baseDuration = attackSO.attack.baseDuration,
-                attackLevel = attackSO.attack.attackLevel,
-                attackPrefab = attackSO.attack.attackPrefab,
-                range = attackSO.attack.range,
-                chainCount = attackSO.attack.chainCount,
-                size = attackSO.attack.size,
+                var CopiedAttack = new Attack
+                {
+                    name = attackSO.attack.name,
+                    isEnabled = attackSO.attack.isEnabled,
+                    allowWithoutTarget = attackSO.attack.allowWithoutTarget,
+                    attackCooldown = attackSO.attack.attackCooldown,
+                    damage = attackSO.attack.damage,
+                    areaOfEffect = attackSO.attack.areaOfEffect,
+                    baseDuration = attackSO.attack.baseDuration,
+                    attackLevel = attackSO.attack.attackLevel,
+                    attackPrefab = attackSO.attack.attackPrefab,
+                    range = attackSO.attack.range,
+                    chainCount = attackSO.attack.chainCount,
+                    size = attackSO.attack.size,
 
-            };
-            myAttacksSO.myAttacks.Add(CopiedAttack);
+                };
+                myAttacksSO.myAttacks.Add(CopiedAttack);
+            }
         }
+        else
+        {
+            Debug.LogError("AttacksSO.MyAttacks is null");
+        }
+
     }
 
     public void SetArtifactOn(string artifact)
