@@ -40,6 +40,11 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void UpdateSpeed()
+    {
+        moveSpeed = moveSpeed * (playerStats.GetSpeedModifier() / 100);
+    }
+
     void FixedUpdate()
     {
         if (bIsPlaying)

@@ -35,8 +35,11 @@ public class Stats : MonoBehaviour
     private Coroutine shieldCoroutine;
 
     public bool hasShield = false; // Temporary shield status
+    public bool hasSpeedBoost = false; // Temporary speed boost status
+    float originalSpeed;
 
     private GameObject player;
+    private Player playerScript;
 
     public void ApplyPowerUp(PowerUp.PowerUpType type, float duration)
     {
@@ -68,10 +71,21 @@ public class Stats : MonoBehaviour
 
     private IEnumerator ApplySpeedBoost(float duration)
     {
-        float originalSpeed = moveSpeed;
-        moveSpeed *= 1.5f; // Increase speed by 50%
+        if(hasSpeedBoost == false)
+        {
+            originalSpeed = moveSpeed;
+            moveSpeed *= 1.5f; // Increase speed by 50%
+            hasSpeedBoost = true;
+            playerScript.UpdateSpeed();
+            gameManager.UpdateStatText();
+            Debug.LogError("Speed Applied");
+        }
         yield return new WaitForSeconds(duration);
-        moveSpeed = originalSpeed;
+        hasSpeedBoost = false;
+        moveSpeed = originalSpeed; // Return to original 
+        playerScript.UpdateSpeed();
+        gameManager.UpdateStatText();
+        Debug.LogError("Speed Removed" + originalSpeed);
     }
 
     private IEnumerator ApplyDamageBoost(float duration)
@@ -119,6 +133,7 @@ public class Stats : MonoBehaviour
         currentHealth = maxHealth; // Initialize health
         gameManager = FindFirstObjectByType<GameStateManager>();
         player = FindFirstObjectByType<Player>(FindObjectsInactive.Include).gameObject;
+        playerScript = player.GetComponent<Player>();
     }
 
     public void UpdateStats(List<string> statsToUp, List<int> values)

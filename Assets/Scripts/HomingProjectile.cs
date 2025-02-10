@@ -20,25 +20,61 @@ public class HomingProjectile : MonoBehaviour
         damage = damageAmount;
     }
 
+    void UpdateTarget(Transform targetTransform)
+    {
+        target = targetTransform;
+    }
+
     void Update()
     {
-        if (target == null)
+        if (target == null && GameStateManager.Instance.bIsPlaying && GameStateManager.Instance.CurrentState == GameState.InGame)
         {
-            Debug.LogWarning("HomingProjectile: Target lost! Destroying projectile.");
-            Destroy(gameObject); // Destroy the projectile if the target is null
+            Debug.LogWarning("HomingProjectile: Target lost! Finding new target.");
+            GameObject closestEnemy = FindClosestEnemy();
+            if (closestEnemy == null )
+            {
+                closestEnemy = FindClosestEnemy();
+            }
+            if (closestEnemy != null)
+            {
+                UpdateTarget(closestEnemy.transform);
+            }
+
             return;
         }
 
-        // Calculate direction to the target
-        Vector2 direction = (target.position - transform.position).normalized;
+        if (GameStateManager.Instance.bIsPlaying && GameStateManager.Instance.CurrentState == GameState.InGame)
+        {
+            // Calculate direction to the target
+            Vector2 direction = (target.position - transform.position).normalized;
 
-        // Rotate smoothly toward the target
-        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-        Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            // Rotate smoothly toward the target
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
-        // Move the projectile forward
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+            // Move the projectile forward
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        }
+    }
+
+    private GameObject FindClosestEnemy()
+    {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject closestEnemy = null;
+        float shortestDistance = Mathf.Infinity;
+
+        foreach (GameObject enemy in enemies)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            if (distance < shortestDistance)
+            {
+                shortestDistance = distance;
+                closestEnemy = enemy;
+            }
+        }
+
+        return closestEnemy;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
