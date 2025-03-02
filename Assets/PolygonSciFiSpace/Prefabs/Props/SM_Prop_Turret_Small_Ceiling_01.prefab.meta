@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9a4c1e6735c82ae4e9692018e49afbca
+timeCreated: 1547509940
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138857
+  packageName: POLYGON Sci-Fi Space - Low Poly 3D Art by Synty
+  packageVersion: 1.13.0
+  assetPath: Assets/PolygonSciFiSpace/Prefabs/Props/SM_Prop_Turret_Small_Ceiling_01.prefab
+  uploadId: 652848

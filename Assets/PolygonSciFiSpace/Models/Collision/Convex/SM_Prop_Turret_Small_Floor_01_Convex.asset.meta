@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 199357ac67416194a8c88d304cacbe42
+timeCreated: 1585526575
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138857
+  packageName: POLYGON Sci-Fi Space - Low Poly 3D Art by Synty
+  packageVersion: 1.13.0
+  assetPath: Assets/PolygonSciFiSpace/Models/Collision/Convex/SM_Prop_Turret_Small_Floor_01_Convex.asset
+  uploadId: 652848

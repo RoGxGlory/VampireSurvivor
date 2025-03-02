@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 12f2ba25fda7c1545823660b19a179e6
+timeCreated: 1549584644
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 138857
+  packageName: POLYGON Sci-Fi Space - Low Poly 3D Art by Synty
+  packageVersion: 1.13.0
+  assetPath: Assets/PolygonSciFiSpace/Prefabs/Props/SM_Prop_Turret_Base_Single_05.prefab
+  uploadId: 652848
